@@ -1,0 +1,133 @@
+<div class="bg-light py-4"></div>
+<div id="header" class="bg-danger">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-3">
+        <img src="assets/img/logo.png" alt="Online Food Ordering" class="logo" />
+      </div>
+      <div class="col-4 py-4 pr-md-2 pr-0">
+        <ng-select2 id="drpDistrict" [data]="optionData" [options]="optionsForDistrict"></ng-select2>
+      </div>
+      <div class="col-5 py-4 pl-md-2 pl-2">
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Restorant veya yemek arayın..." />
+          <div class="input-group-append">
+            <button class="input-group-text bg-warning text-white">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="breadCrumb" class="bg-light mb-4 pt-5 py-3">
+  <div class="container" *ngIf="sharedService.isViewBreadCrumb">
+    <h1 class="h3">{{titleService.getTitle()}}</h1>
+  </div>
+</div>
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <app-login-menu></app-login-menu>
+      </div>
+      <div class="col-9">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addOptionProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Opsiyon Ekle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row no-gutters py-2">
+          <div class="col-3 d-flex justify-content-between align-items-center">
+            <label class="text-nowrap m-0 font-weight-bold">Opsiyon Adı :
+            </label>
+          </div>
+          <div class="col-9">
+            <input type="text" name="productName" class="form-control" />
+          </div>
+        </div>
+        <div class="row no-gutters py-2">
+          <div class="col-3 d-flex justify-content-between align-items-center">
+            <label class="text-nowrap m-0 font-weight-bold">Opsiyon Türü :
+            </label>
+          </div>
+          <div class="col-9">
+            <select name="drpOptionType" class="form-control">
+              <option value="S">Tekli Seçim</option>
+              <option value="M">Çoklu Seçim</option>
+            </select>
+          </div>
+        </div>
+        <div class="row no-gutters py-2">
+          <div class="col-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Materyal Adı</th>
+                  <th scope="col">Materyal Farkı</th>
+                  <th scope="col" class="text-right">
+                    <button class="border-0 bg-transparent text-primary" data-toggle="modal" data-target="#addOptionProduct">
+                      Bu ürüne materyal ekle
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Normal Patates</td>
+                  <td>
+                    <strong class="money-width">0,0</strong>
+                    <i class="fas fa-lira-sign"></i>
+                  </td>
+                  <td class="text-right">
+                    <button class="btn btn-sm btn-danger">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-sm btn-warning">
+                      <i class="far fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tırtıklı Patates</td>
+                  <td>
+                    <strong class="money-width">1,5</strong>
+                    <i class="fas fa-lira-sign"></i>
+                  </td>
+                  <td class="text-right">
+                    <button class="btn btn-sm btn-danger">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-sm btn-warning">
+                      <i class="far fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Opsiyonu Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="footer" class="bg-light">
+  <div class="container py-4 d-flex justify-content-between align-items-center">
+    <a href="#" class="d-inline-block btn btn-warning">Üye İş Yerimiz Olun</a>
+  </div>
+</div>

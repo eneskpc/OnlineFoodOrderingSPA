@@ -1,0 +1,12 @@
+.scroller {
+    height: 215px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.text-nowrap.three-dots {
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: inline-block;
+}

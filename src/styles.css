@@ -1,1 +1,116 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+}
+
+#header .logo {
+  max-width: 170px;
+  margin: -40px 0;
+}
+
+.select2-container--bootstrap4 {
+  width: 100% !important;
+}
+
+.font-size-sm {
+  font-size: 14px;
+}
+
+#breadCrumb {
+  min-height: 60px;
+}
+
+ul.bread-crumb, ol.bread-crumb {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+ul.bread-crumb>li, ol.bread-crumb>li {
+  list-style: none;
+}
+
+ul.bread-crumb>li::before, ol.bread-crumb>li::before {
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  padding: 0 10px;
+}
+
+ul.bread-crumb>li:first-of-type::before, ol.bread-crumb>li:first-of-type::before {
+  content: none;
+}
+
+#content {
+  margin-bottom: 100px;
+}
+
+.money-width {
+  min-width: 42px;
+  display: inline-block;
+  text-align: center;
+}
+
+.list-group-item.active {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+.view-point {
+  width: 41px;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.card.loading {
+  position: relative;
+}
+
+.card.loading::before {
+  content: '\f110';
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  animation: fa-spin 2s infinite linear;
+  z-index: 9;
+  font-size: 40px;
+}
+
+.card.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  z-index: 8;
+}
+
+#footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.city-container {
+  display: inline-block;
+  width: 100px;
+  padding-left: 5px;
+  padding-right: 5px;
+}

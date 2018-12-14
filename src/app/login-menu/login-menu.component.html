@@ -1,0 +1,64 @@
+<div class="card" *ngIf="!authService.isAuthenticated" [ngClass]="{loading:processing}">
+  <div class="card-body">
+    <div class="form-group">
+      <label>E-Posta</label>
+      <input type="text" [(ngModel)]="model.username" (keyup.enter)="login()" class="form-control form-control-sm" />
+    </div>
+    <div class="form-group">
+      <label>Parola</label>
+      <input type="password" [(ngModel)]="model.password" (keyup.enter)="login()" class="form-control form-control-sm" />
+    </div>
+    <button type="button" class="btn btn-success" (disabled)="processing" (click)="login()">
+      Giriş Yap <i class="fas fa-sign-in-alt fa-fw"></i>
+    </button>
+    <div class="alert alert-danger mt-2" *ngIf="loginError != null">{{loginError}}</div>
+    <a href="#" class="d-block mt-2 font-size-sm">Şifrenizi unuttunuz mu?</a>
+  </div>
+  <div class="card-body bg-light font-size-sm">
+    <span>Üyeliğiniz Yok mu?</span> <a href="#">Yeni Üyelik!</a>
+  </div>
+</div>
+<div class="card" *ngIf="authService.isAuthenticated && (authService.isAdmin || authService.isResponsible)">
+  <div class="card-header">
+    <div class="media">
+      <img class="mr-1" src="assets/img/dummy-avatar.jpg" width="40" height="40" alt="Generic placeholder image" />
+      <div class="media-body">
+        <h5 class="h6 m-0">{{authService.currentUser!=null?currentUser.firstname:''}} {{authService.currentUser!=null?authService.currentUser.lastname:''}}</h5>
+        <small>{{shopService.currentShop!=null?shopService.currentShop.shopName:''}}</small>
+      </div>
+    </div>
+  </div>
+  <div class="list-group list-group-flush">
+    <a href="#" class="list-group-item list-group-item-action">Mağaza Bilgileri</a>
+    <a href="#" class="list-group-item list-group-item-action">Ürün Listesi</a>
+    <a href="#" class="list-group-item list-group-item-action">Ürün Ekle</a>
+    <a href="#" class="list-group-item list-group-item-action">Sorumlu Listesi</a>
+    <a href="#" class="list-group-item list-group-item-action">Sorumlu Ekle</a>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-block btn-danger" (click)="authService.logout()">
+      Çıkış Yap <i class="fas fa-sign-out-alt fa-fw"></i>
+    </button>
+  </div>
+</div>
+<div class="card" *ngIf="authService.isAuthenticated && !(authService.isAdmin || authService.isResponsible)">
+  <div class="card-header">
+    <div class="media">
+      <img class="mr-1" src="assets/img/dummy-avatar.jpg" width="40" height="40" alt="Generic placeholder image" />
+      <div class="media-body">
+        <h5 class="h6 m-0">{{authService.currentUser!=null?authService.currentUser.firstname:''}} {{authService.currentUser!=null?authService.currentUser.lastname:''}}</h5>
+        <small>{{authService.currentUser!=null?authService.currentUser.username:''}}</small>
+      </div>
+    </div>
+  </div>
+  <div class="list-group list-group-flush">
+    <a href="#" class="list-group-item list-group-item-action">Profil Bilgilerim</a>
+    <a href="#" class="list-group-item list-group-item-action">Siparişlerim</a>
+    <a href="#" class="list-group-item list-group-item-action">Adreslerim</a>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-block btn-danger" (click)="authService.logout()">
+      Çıkış Yap <i class="fas fa-sign-out-alt fa-fw"></i>
+    </button>
+  </div>
+</div>

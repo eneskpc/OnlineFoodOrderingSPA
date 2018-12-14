@@ -1,0 +1,7 @@
+<div class="text-center">
+  <h2 class="mb-5">Açlığını gidermenin ilk yolu, <strong class="text-danger">bulunduğun şehri seçmektir!</strong></h2>
+  <div class="city-container" *ngFor="let city of cities">
+    <button class="btn btn-danger btn-block" (click)="changeCity(city.seoLink)">{{city.id}}</button>
+    <div class="text-center mb-3">{{city.cityName}}</div>
+  </div>
+</div>
