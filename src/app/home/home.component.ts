@@ -41,7 +41,8 @@ export class HomeComponent implements OnInit {
       }
       this.getCurrentCity();
     }
-    this.getAddresses();
+    if (this.authService.isUser)
+      this.addressService.getAddreses();
   }
 
   public getCurrentCity() {
@@ -56,12 +57,5 @@ export class HomeComponent implements OnInit {
     }, error => {
       this.router.navigateByUrl("change-city");
     });
-  }
-
-  public getAddresses() {
-    if (this.authService.isAuthenticated)
-      this.addressService.getAddreses().subscribe(data => {
-        this.addresses = data;
-      });
   }
 }

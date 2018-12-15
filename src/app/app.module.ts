@@ -13,6 +13,7 @@ import { SpecialLayoutComponent } from './special-layout/special-layout.componen
 import { ChangeCityComponent } from './change-city/change-city.component';
 import { PageSelectorComponent } from './page-selector/page-selector.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AddressListComponent } from './address-list/address-list.component';
 
 @NgModule({
    declarations: [
@@ -23,7 +24,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       SpecialLayoutComponent,
       ChangeCityComponent,
       PageSelectorComponent,
-      UserProfileComponent
+      UserProfileComponent,
+      AddressListComponent
    ],
    imports: [
       BrowserModule,

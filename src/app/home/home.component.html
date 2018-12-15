@@ -2,14 +2,13 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                {{authService.isAuthenticated ? getAddresses(): ""}}
                 <strong>Kayıtlı Semtlerim</strong>
             </div>
             <div class="list-group list-group-flush scroller">
-                <div class="list-group-item list-group-item-action" *ngFor="let address of addresses">
-                    <a class="h6 d-block" href="">{{address.title}}</a>
+                <a href="#" class="list-group-item list-group-item-action" *ngFor="let address of addressService.addresses">
+                    <h4 class="h6">{{address.title}}</h4>
                     <span class="text-nowrap three-dots">{{address.fullAddress}}</span>
-                </div>
+                </a>
             </div>
             <div class="card-body bg-light font-size-sm">
                 <a href="#">Yeni Adres Ekle!</a>

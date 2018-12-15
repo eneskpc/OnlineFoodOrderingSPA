@@ -1,14 +1,14 @@
-<div class="card" *ngIf="!authService.isAuthenticated" [ngClass]="{loading:processing}">
+<div class="card" *ngIf="!authService.isAuthenticated">
   <div class="card-body">
     <div class="form-group">
       <label>E-Posta</label>
-      <input type="text" [(ngModel)]="model.username" (keyup.enter)="login()" class="form-control form-control-sm" />
+      <input type="text" [(ngModel)]="model.username" (keyup.enter)="authService.login(model)" class="form-control form-control-sm" />
     </div>
     <div class="form-group">
       <label>Parola</label>
-      <input type="password" [(ngModel)]="model.password" (keyup.enter)="login()" class="form-control form-control-sm" />
+      <input type="password" [(ngModel)]="model.password" (keyup.enter)="authService.login(model)" class="form-control form-control-sm" />
     </div>
-    <button type="button" class="btn btn-success" (disabled)="processing" (click)="login()">
+    <button type="button" class="btn btn-success" (disabled)="processing" (click)="authService.login(model)">
       Giriş Yap <i class="fas fa-sign-in-alt fa-fw"></i>
     </button>
     <div class="alert alert-danger mt-2" *ngIf="loginError != null">{{loginError}}</div>
@@ -41,7 +41,7 @@
     </button>
   </div>
 </div>
-<div class="card" *ngIf="authService.isAuthenticated && !(authService.isAdmin || authService.isResponsible)">
+<div class="card" *ngIf="authService.isAuthenticated && authService.isUser">
   <div class="card-header">
     <div class="media">
       <img class="mr-1" src="assets/img/dummy-avatar.jpg" width="40" height="40" alt="Generic placeholder image" />

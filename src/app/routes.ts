@@ -5,6 +5,7 @@ import { SpecialLayoutComponent } from './special-layout/special-layout.componen
 import { ChangeCityComponent } from './change-city/change-city.component';
 import { PageSelectorComponent } from './page-selector/page-selector.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AddressListComponent } from './address-list/address-list.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,9 @@ export const routes: Routes = [
     children: [{
       path: 'profile',
       component: UserProfileComponent
+    },{
+      path: 'addresses',
+      component: AddressListComponent
     }, {
       path: ':citySeo/welcome',
       component: HomeComponent
