@@ -22,7 +22,7 @@ export class AuthService {
         this.loggedUser().subscribe(userData => {
           this.currentUser = userData;
           if (this.isUser) {
-            this.addressService.getAddreses();
+            this.addressService.getAddresses();
           }
         });
       });

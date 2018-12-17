@@ -7,6 +7,7 @@ import { AddressService } from '../services/address.service';
 import { Address } from '../models/address';
 import { AuthService } from '../services/auth.service';
 import { ShareVariableService } from '../services/share-variable.service';
+import { DistrictService } from '../services/district.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
     private cityService: CityService,
     private addressService: AddressService,
     private authService: AuthService,
+    private districtService: DistrictService,
     private sharedService: ShareVariableService,
     private router: Router) { }
 
@@ -41,8 +43,6 @@ export class HomeComponent implements OnInit {
       }
       this.getCurrentCity();
     }
-    if (this.authService.isUser)
-      this.addressService.getAddreses();
   }
 
   public getCurrentCity() {
@@ -56,6 +56,12 @@ export class HomeComponent implements OnInit {
       this.titleService.setTitle(data.cityName);
     }, error => {
       this.router.navigateByUrl("change-city");
+    });
+  }
+
+  public gotoDistrict(id) {
+    this.districtService.getDistrictById(id).subscribe(data => {
+      this.router.navigateByUrl(localStorage.selectedCity + "/" + data.seoLink + "/shops");
     });
   }
 }

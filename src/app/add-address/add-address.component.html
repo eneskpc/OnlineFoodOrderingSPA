@@ -1,0 +1,36 @@
+<div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adres Ekle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Adres Başlığı :</label>
+          <input type="text" class="form-control" placeholder="Bir başlık girin. Örnek : İş Adresi" [(ngModel)]="model.title"
+            [value]="addressService.currentAddress?addressService.currentAddress.title:''" />
+        </div>
+        <div class="form-group">
+          <label>Telefon :</label>
+          <input type="text" mask="(000) 000-0000" class="form-control" placeholder="İletişim için telefon numarası girin." [(ngModel)]="model.telephone"
+            [value]="addressService.currentAddress?addressService.currentAddress.telephone:''" />
+        </div>
+        <div class="form-group">
+          <label>Semt :</label>
+          <ng-select2 id="drpDistrict" [(ngModel)]="model.districtId" [value]="addressService.currentAddress?addressService.currentAddress.district.id:''"
+            [data]="optionData" [options]="optionsForDistrict"></ng-select2>
+        </div>
+        <div class="form-group">
+          <label>Tam Adres :</label>
+          <textarea class="form-control" placeholder="Açık adresinizi girin." [(ngModel)]="model.fullAddress" [value]="addressService.currentAddress?addressService.currentAddress.fullAddress:''"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="addressService.addAddress(model)">Adresi Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

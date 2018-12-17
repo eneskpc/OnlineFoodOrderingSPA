@@ -1,28 +1,31 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DistrictService } from '../services/district.service';
+import { Component, OnInit } from '@angular/core';
+import { AddressService } from '../services/address.service';
 import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
-import { Title } from '@angular/platform-browser';
-import { ShareVariableService } from '../services/share-variable.service';
 import { AuthService } from '../services/auth.service';
-import { AddressService } from '../services/address.service';
+import { DistrictService } from '../services/district.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-main-layout',
-  templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.css']
+  selector: 'app-add-address',
+  templateUrl: './add-address.component.html',
+  styleUrls: ['./add-address.component.css']
 })
-export class MainLayoutComponent implements OnInit {
+export class AddAddressComponent implements OnInit {
 
-  constructor(private districtService: DistrictService,
-    private titleService: Title,
-    private sharedService: ShareVariableService,
+  constructor(private addressService: AddressService,
     private authService: AuthService,
-    private addressService: AddressService) { }
+    private districtService: DistrictService) { }
 
   public optionData: Select2OptionData[];
   public optionsForDistrict: Options;
 
+  public model = {
+    title: null,
+    districtId: null,
+    fullAddress: null,
+    telephone: null
+  };
 
   ngOnInit() {
     this.optionsForDistrict = {

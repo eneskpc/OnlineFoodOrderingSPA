@@ -6,6 +6,8 @@ import { ChangeCityComponent } from './change-city/change-city.component';
 import { PageSelectorComponent } from './page-selector/page-selector.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AddressListComponent } from './address-list/address-list.component';
+import { ShopsComponent } from './shops/shops.component';
+import { ShopDetailComponent } from './shop-detail/shop-detail.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +34,12 @@ export const routes: Routes = [
     }, {
       path: ':citySeo/welcome',
       component: HomeComponent
+    }, {
+      path: ':citySeo/:districtSeo/shops',
+      component: ShopsComponent
+    }, {
+      path: ':shopSeo/products',
+      component: ShopDetailComponent
     }]
   }
 ];

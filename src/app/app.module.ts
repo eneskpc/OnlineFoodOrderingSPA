@@ -14,6 +14,14 @@ import { ChangeCityComponent } from './change-city/change-city.component';
 import { PageSelectorComponent } from './page-selector/page-selector.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AddressListComponent } from './address-list/address-list.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { AddAddressComponent } from './add-address/add-address.component';
+import { ShopsComponent } from './shops/shops.component';
+import { ShopDetailComponent } from './shop-detail/shop-detail.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+
+export const ngxMaskOptions = {};
 
 @NgModule({
    declarations: [
@@ -25,14 +33,20 @@ import { AddressListComponent } from './address-list/address-list.component';
       ChangeCityComponent,
       PageSelectorComponent,
       UserProfileComponent,
-      AddressListComponent
+      AddressListComponent,
+      AddAddressComponent,
+      ShopsComponent,
+      ShopDetailComponent,
+      ShoppingCartComponent,
+      ProductDetailComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       NgSelect2Module,
       FormsModule,
-      HttpClientModule
+      HttpClientModule,
+      NgxMaskModule.forRoot(ngxMaskOptions)
    ],
    providers: [],
    bootstrap: [

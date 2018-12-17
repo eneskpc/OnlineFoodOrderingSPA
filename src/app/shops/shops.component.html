@@ -1,0 +1,6 @@
+<div class="d-flex align-items-center py-2 border-top-0 border-left-0 border-right-0 border" *ngFor="let shop of shopService.shops">
+  <div class="px-2">
+    <button (click)="goToShopBySeo(shop.seoLink)" class="d-block h6 m-0 bg-transparent border-0 p-0">{{shop.shopName}}</button>
+    <small>minimum sipariş tutarı <strong>{{shop.minPrice}} ₺</strong></small>
+  </div>
+</div>

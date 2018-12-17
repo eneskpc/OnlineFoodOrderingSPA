@@ -5,10 +5,10 @@
                 <strong>Kayıtlı Semtlerim</strong>
             </div>
             <div class="list-group list-group-flush scroller">
-                <a href="#" class="list-group-item list-group-item-action" *ngFor="let address of addressService.addresses">
+                <button (click)="gotoDistrict(address.district.id)" class="list-group-item list-group-item-action" *ngFor="let address of addressService.addresses">
                     <h4 class="h6">{{address.title}}</h4>
                     <span class="text-nowrap three-dots">{{address.fullAddress}}</span>
-                </a>
+                </button>
             </div>
             <div class="card-body bg-light font-size-sm">
                 <a href="#">Yeni Adres Ekle!</a>
