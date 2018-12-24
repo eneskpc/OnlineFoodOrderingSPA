@@ -5,4 +5,5 @@ export class BasketProduct {
     product: Product;
     quantity: number;
     unitPrice: number;
+    optionsText: string;
 }

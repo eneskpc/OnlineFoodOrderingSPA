@@ -1,4 +1,4 @@
-<div class="card" *ngIf="!authService.isAuthenticated">
+<div class="card" *ngIf="!authService.isAuthenticated" [ngClass]="{loading:authService.isProcess}">
   <div class="card-body">
     <div class="form-group">
       <label>E-Posta</label>
@@ -18,12 +18,14 @@
     <span>Üyeliğiniz Yok mu?</span> <a href="#">Yeni Üyelik!</a>
   </div>
 </div>
+
 <div class="card" *ngIf="authService.isAuthenticated && (authService.isAdmin || authService.isResponsible)">
   <div class="card-header">
     <div class="media">
       <img class="mr-1" src="assets/img/dummy-avatar.jpg" width="40" height="40" alt="Generic placeholder image" />
       <div class="media-body">
-        <h5 class="h6 m-0">{{authService.currentUser!=null?currentUser.firstname:''}} {{authService.currentUser!=null?authService.currentUser.lastname:''}}</h5>
+        <h5 class="h6 m-0">{{authService.currentUser!=null?currentUser.firstname:''}}
+          {{authService.currentUser!=null?authService.currentUser.lastname:''}}</h5>
         <small>{{shopService.currentShop!=null?shopService.currentShop.shopName:''}}</small>
       </div>
     </div>
@@ -41,12 +43,14 @@
     </button>
   </div>
 </div>
+
 <div class="card" *ngIf="authService.isAuthenticated && authService.isUser">
   <div class="card-header">
     <div class="media">
       <img class="mr-1" src="assets/img/dummy-avatar.jpg" width="40" height="40" alt="Generic placeholder image" />
       <div class="media-body">
-        <h5 class="h6 m-0">{{authService.currentUser!=null?authService.currentUser.firstname:''}} {{authService.currentUser!=null?authService.currentUser.lastname:''}}</h5>
+        <h5 class="h6 m-0">{{authService.currentUser!=null?authService.currentUser.firstname:''}}
+          {{authService.currentUser!=null?authService.currentUser.lastname:''}}</h5>
         <small>{{authService.currentUser!=null?authService.currentUser.username:''}}</small>
       </div>
     </div>
@@ -57,7 +61,7 @@
     <a routerLink="/addresses" routerLinkActive="active" class="list-group-item list-group-item-action">Adreslerim</a>
   </div>
   <div class="card-footer">
-    <button class="btn btn-block btn-danger" (click)="authService.logout()">
+    <button class="btn btn-block btn-outline-danger btn-sm" (click)="authService.logout()">
       Çıkış Yap <i class="fas fa-sign-out-alt fa-fw"></i>
     </button>
   </div>

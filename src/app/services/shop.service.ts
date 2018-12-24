@@ -11,13 +11,29 @@ export class ShopService {
   constructor(private http: HttpClient) { }
 
   public currentShop: Shop;
+  public userShop: Shop;
   public shops: Shop[];
 
-  getCurrentShop() {
+  getUserShop() {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
     headers = headers.append("Authorization", `Bearer ${localStorage.token}`);
     this.http.get<Shop>("http://localhost:8080/userShop", { headers: headers }).subscribe(data => {
+      this.currentShop = data;
+    });
+  }
+
+  getShopById(id: number) {
+    this.http.get<Shop>("http://localhost:8080/currentShopWithId/" + id).subscribe(data => {
+      this.currentShop = data;
+    });
+  }
+
+  getShopBySeoLink(link: string) {
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
+    headers = headers.append("Authorization", `Bearer ${localStorage.token}`);
+    this.http.get<Shop>("http://localhost:8080/currentShopWithLink/" + link, { headers: headers }).subscribe(data => {
       this.currentShop = data;
     });
   }

@@ -14,9 +14,11 @@ export class AuthService {
 
   jwtHelper: JwtHelperService = new JwtHelperService();
   public currentUser: User;
+  public isProcess: boolean = false;
 
   public login(userModel) {
     if (userModel != null) {
+      this.isProcess = true;
       this.http.post<string>("http://localhost:8080/auth", userModel).subscribe(data => {
         localStorage.setItem("token", data["token"]);
         this.loggedUser().subscribe(userData => {
@@ -24,6 +26,7 @@ export class AuthService {
           if (this.isUser) {
             this.addressService.getAddresses();
           }
+          this.isProcess = false;
         });
       });
     }

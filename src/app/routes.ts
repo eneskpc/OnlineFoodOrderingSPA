@@ -8,6 +8,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AddressListComponent } from './address-list/address-list.component';
 import { ShopsComponent } from './shops/shops.component';
 import { ShopDetailComponent } from './shop-detail/shop-detail.component';
+import { PlaceOrderComponent } from './place-order/place-order.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,9 @@ export const routes: Routes = [
     }, {
       path: 'change-city',
       component: ChangeCityComponent
+    }, {
+      path: 'place-order',
+      component: PlaceOrderComponent
     }]
   },
   {
@@ -28,7 +32,7 @@ export const routes: Routes = [
     children: [{
       path: 'profile',
       component: UserProfileComponent
-    },{
+    }, {
       path: 'addresses',
       component: AddressListComponent
     }, {

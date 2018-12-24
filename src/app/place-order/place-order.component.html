@@ -1,0 +1,80 @@
+<a routerLink="/{{shoppingService.basket[0].product.shop.seoLink}}/products" class="h4 mb-3 text-danger d-inline-block font-weight-bold"
+    *ngIf="shoppingService.basket">{{shoppingService.basket[0].product.shop.shopName}}</a>
+<table class="table table-bordered" *ngIf="shoppingService.basket">
+    <thead>
+        <tr class="bg-light">
+            <th class="w-100">ÜRÜN</th>
+            <th class="text-nowrap">BİRİM FİYAT</th>
+            <th>ADET</th>
+            <th class="text-nowrap">TOPLAM FİYAT</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let basket of shoppingService.basket">
+            <td><strong class="pr-2">{{basket.product.productName}}</strong><small>{{basket.optionsText}}</small></td>
+            <td>{{basket.unitPrice.toFixed(2)}} <i class="fas fa-lira-sign"></i></td>
+            <td>
+                <input type="number" (keyup)="shoppingService.onChangeQuantityFromBasket(basket.id, $event.target.value)"
+                    (change)="shoppingService.onChangeQuantityFromBasket(basket.id, $event.target.value)" [value]="basket.quantity"
+                    class="form-control form-control-sm text-center" />
+            </td>
+            <td class="text-right text-danger font-weight-bold">
+                {{(basket.unitPrice * basket.quantity).toFixed(2)}} <i class="fas fa-lira-sign"></i>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr class="bg-light">
+            <td colspan="3" class="text-right font-weight-bold text-success" style="font-size:20px;">
+                TOPLAM :
+            </td>
+            <td class="text-right font-weight-bold text-success" style="font-size:20px;">
+                {{(shoppingService.totalPriceForBasket).toFixed(2)}} <i class="fas fa-lira-sign"></i>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="row no-gutters">
+    <div class="col-6">
+        <div class="card mr-2" style="height:100%;">
+            <div class="card-header bg-light">Ödeme Yöntemi</div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let paymentMethod of shoppingService.basket[0].product.shop.paymentMethods">
+                    <div class="ofo-radio-button">
+                        <input type="radio" (change)="onSelectPaymentMethod(paymentMethod.id)" name="shop-payment-method" [checked]="paymentMethod.id == shoppingService.basket[0].product.shop.paymentMethods[0].id">
+                        <label>
+                            <strong class="d-block">{{paymentMethod.methodName}}</strong>
+                            <small class="d-block">{{paymentMethod.description}}</small>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card ml-2" style="height:100%;">
+            <div class="card-header bg-light">Adres Seçimi</div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let address of addressByBasketShop">
+                    <div class="ofo-radio-button">
+                        <input type="radio" (change)="onSelectAddress(address.id)" name="user-address" [checked]="address.id == addressByBasketShop[0].id">
+                        <label>
+                            <strong class="d-block">{{address.title}}</strong>
+                            <small class="d-block">{{address.fullAddress}}</small>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card my-4 ">
+            <div class="card-header bg-light">Sipariş Notu</div>
+            <textarea class="card-body border-light" placeholder="Örneğin; siparişlerinizden opsiyon olarak sunulmasa da istemediğiniz bir malzemeyi çıkartmaları talebini iletebilirsiniz. Tabi bu uyarıyı dikkate almak restoranın inisiyatifindedir."></textarea>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-success font-weight-bold">SİPARİŞİ TAMAMLA</button>
+        </div>
+    </div>
+</div>

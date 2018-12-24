@@ -10,12 +10,13 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 export class ProductDetailComponent implements OnInit {
 
   constructor(private productService: ProductService,
-    shoppingCartService: ShoppingCartService) { }
-
-  public model;
+    private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
   }
 
-
+  modalCloseProcesses() {
+    this.productService.clearCurrentProduct();
+    this.shoppingCartService.clearSelectedOptions();
+  }
 }

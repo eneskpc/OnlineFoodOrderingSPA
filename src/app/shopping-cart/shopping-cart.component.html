@@ -1,12 +1,39 @@
-<div class="card mt-2">
+<div class="card my-4">
   <div class="card-header bg-danger text-white py-2">SEPETİM</div>
-  <div class="card-body bg-warning py-2 font-size-sm">
-    Çorlu (Nusratiye Mah.)
+  <div class="card-body bg-warning py-2 font-size-sm" *ngIf="shoppingService.basket && shoppingService.basket.length>0">
+    <a class="text-danger font-weight-bold" routerLink="/{{shoppingService.basket[0]?.product.shop.seoLink}}/products">{{shoppingService.basket[0]?.product.shop.shopName}}</a>
   </div>
-  <div class="card-body">
+  <div class="card-body" *ngIf="!(shoppingService.basket && shoppingService.basket.length>0)">
     <div class="d-flex justify-content-center align-items-center">
       <i class="fas fa-shopping-basket text-secondary fa-3x"></i>
       <span class="pl-2">Sepetiniz Henüz Boş</span>
     </div>
+  </div>
+  <ul class="list-group list-group-flush" *ngIf="shoppingService.basket && shoppingService.basket.length>0">
+    <li class="list-group-item list-group-item-action position-relative" *ngFor="let basket of shoppingService.basket">
+      <div class="row no-gutters">
+        <div class="col-5 pt-1">
+          <small>{{basket.product.productName}}</small>
+        </div>
+        <div class="col-3">
+          <input type="number" (keyup)="shoppingService.onChangeQuantityFromBasket(basket.id, $event.target.value)"
+            (change)="shoppingService.onChangeQuantityFromBasket(basket.id, $event.target.value)" [value]="basket.quantity"
+            class="form-control form-control-sm text-center" />
+        </div>
+        <div class="col-4 text-right pt-1">
+          <small>{{(basket.unitPrice * basket.quantity).toFixed(2)}} <i class='fas fa-lira-sign'></i></small>
+        </div>
+      </div>
+      <button class="bg-danger position-absolute border-0 rounded-left p-0" style="right:-1px;top:16px;" (click)="shoppingService.areYouSureDelete(basket.id)">
+        <small class="fas fa-times fa-fw text-white"></small>
+      </button>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      <strong>TOPLAM</strong>
+      <strong>{{(shoppingService.totalPriceForBasket).toFixed(2)}} <i class='fas fa-lira-sign'></i></strong>
+    </li>
+  </ul>
+  <div class="card-footer" *ngIf="shoppingService.basket && shoppingService.basket.length>0">
+    <button routerLink="/place-order" class="btn btn-success btn-block">SEPETİ ONAYLA</button>
   </div>
 </div>

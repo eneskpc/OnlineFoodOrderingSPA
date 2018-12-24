@@ -20,6 +20,7 @@ import { ShopsComponent } from './shops/shops.component';
 import { ShopDetailComponent } from './shop-detail/shop-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { PlaceOrderComponent } from './place-order/place-order.component';
 
 export const ngxMaskOptions = {};
 
@@ -38,7 +39,8 @@ export const ngxMaskOptions = {};
       ShopsComponent,
       ShopDetailComponent,
       ShoppingCartComponent,
-      ProductDetailComponent
+      ProductDetailComponent,
+      PlaceOrderComponent
    ],
    imports: [
       BrowserModule,

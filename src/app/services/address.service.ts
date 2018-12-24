@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Address } from '../models/address';
 import Swal from 'sweetalert2';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddressService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private shoppingService: ShoppingCartService) { }
 
   path = "http://localhost:8080";
   public addresses: Address[] = [];
@@ -21,6 +23,22 @@ export class AddressService {
     this.http.get<Address[]>(this.path + "/addresses", { headers: headers }).subscribe(data => {
       this.addresses = data;
     });
+  }
+
+  public getAddressesByBasketShop() {
+    this.getAddresses();
+    if (this.addresses && this.shoppingService.basket && this.shoppingService.basket.length > 0) {
+      let tempAddresses: Address[] = [];
+      this.addresses.forEach(address => {
+        let hasDistrict = false;
+        this.shoppingService.basket[0].product.shop.districts.forEach(district => {
+          hasDistrict = district.id == address.district.id;
+        });
+        if (hasDistrict)
+          tempAddresses.push(address);
+      });
+      return tempAddresses;
+    }
   }
 
   public getAddressById(addressId) {
